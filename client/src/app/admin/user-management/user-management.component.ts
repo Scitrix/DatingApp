@@ -25,6 +25,12 @@ export class UserManagementComponent implements OnInit {
     })
   }
 
+  deleteUser(user: User) {
+    this.adminService.deleteUser(user.username).subscribe(() => {
+      this.users.splice(this.users.findIndex(u => u.id === user.id), 1);
+    })
+  }
+
   openRolesModal(user: User) {
     const config = {
       class: 'modal-dialog-centered',

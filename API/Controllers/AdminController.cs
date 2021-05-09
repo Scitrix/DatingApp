@@ -57,11 +57,12 @@ namespace API.Controllers
             return Ok(await _userManager.GetRolesAsync(user));
         }
 
-        [Authorize(Policy = "ModeratePhotoRole")]
-        [HttpGet("photos-to-moderate")]
-        public ActionResult GetPhotosForModeration()
+        [HttpDelete("delete-user/{username}")]
+        public async Task<ActionResult> DeleteUser(string username)
         {
-            return Ok("Admins or moderators can see this");
+            var user = await _userManager.FindByNameAsync(username);
+
+            return Ok(await _userManager.DeleteAsync(user));
         }
     }
 }

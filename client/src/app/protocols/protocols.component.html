@@ -1,0 +1,31 @@
+<h2>Jegyzőkönyvek</h2>
+<div *ngIf="!createMode">
+<button class="btn btn-primary" (click)="createToggle()">Jegyzőkönyv hozzáadása</button>
+<div class="tab-panel">
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th style="width: 40%">Jegyzőkönyv neve</th>
+                    <th style="width: 40%">Készítette</th>
+                    <th style="width: 20%"></th>
+                </tr>
+                <tr *ngFor="let prot of protocol">
+                    <td>{{prot.protocolName}}</td>
+                    <td>{{prot.creatorUsername}}</td>
+                    <td>
+                        <button (click)="deleteProtocol(prot.id)" class="btn btn-danger">Törlés</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<div *ngIf="createMode" class="container" (cancelCreate)="cancelCreateMode($event)">
+    <div class="row justify-content center">
+        <div class="col-4">
+            <app-create (cancelCreate)="cancelCreateMode($event)"></app-create>
+        </div>
+    </div>
+</div>

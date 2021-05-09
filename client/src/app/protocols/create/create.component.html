@@ -1,0 +1,11 @@
+<form [formGroup]="createForm" (ngSubmit)="createForm.valid && createProtocol()" autocomplete="off">
+    <h2 class="text-cente text-primary">Jegyzőkönyv hozzáadása</h2>
+    <hr />
+    <app-text-input [formControl]='createForm.controls["protocolName"]'
+        [label]='"Jegyzőkönyv neve"'></app-text-input>
+
+    <div class="form-group text-center">
+        <button [disabled]='!createForm.valid' class="btn btn-success mr-2" type="submit">Hozzáadás</button>
+        <button class="btn btn-default mr-2" type="button" (click)="cancel()">Vissza</button>
+    </div>
+</form>
